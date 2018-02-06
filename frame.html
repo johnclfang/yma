@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>裝框費用試算</title>
+<!-- Bootstrap -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/main.css" rel="stylesheet">
+<link href="css/bootstrap.fd.css" rel="stylesheet">
+<style>
+
+div.wrapper{
+	width:50%
+	float:left; /* important */
+	position:relative; /* important(so we can absolutely position the description div */
+}
+div.description{
+	position:absolute; /* absolute position (so we can position it where we want)*/
+	bottom:0px; /* position will be on bottom */
+	left:0px;
+	width:100%;
+	/* styling bellow */
+	/*background-color:black;*/
+	color:white;
+	opacity:0.9; /* transparency */
+	filter:alpha(opacity=60); /* IE transparency */
+}
+p.description_content{
+	padding:0px;
+	margin-bottom:5px;
+	font-size: 20px;
+}
+	.row [class*="col-"]{
+  margin-bottom: -99999px;
+  padding-bottom: 99999px;
+}
+
+	.row{
+  		overflow: hidden; 
+	}
+	.vbottom {
+   		display: inline-block;
+   		vertical-align: bottom;
+   		float: none;
+	}
+	
+	.col-* .after{
+		position: absolute;
+    	top: 0;
+    	left: 0;
+    	width: 100%;
+    	height: 100%;
+    	display: none;
+    	color: #FFF;
+	}
+	.col-*:hover .after {
+    display: block;
+    background: rgba(0, 0, 0, .3);
+}
+
+</style>
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+<body style="background:url('images/back2.jpg'); background-size:auto 100%;" onLoad="setup();" onResize="doFraming();">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#defaultNavbar1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span><span
+						class="icon-bar"></span><span class="icon-bar"></span><span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="index.html"><img src="images/揚美畫框72.jpg" width="100"/></a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="defaultNavbar1">
+				<ul class="nav navbar-nav" style="font-size: 160%">
+					<li class="active"><a href="index.html">首頁<span class="sr-only">(current)</span></a></li>
+			        <li><a href="gallery.html">畫廊</a></li>
+          			<li><a href="printPainting.html">複製畫</a></li>
+				</ul>
+		        <ul class="nav navbar-nav navbar-right"  style="font-size: 160%;">
+       			   <li><a href="#">購物清單<span class="badge" id="cartItems" style="font-size: 60%;position: relative;  top: -8px; left:0px;background-color: red;">0</span></a></li>
+         			<li><a href="#contactUs">聯絡我們</a></li>
+
+          </li>
+        </ul>
+</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+	
+	<div class="row" id="order">
+		<div class="col-lg-4">
+			<center>
+				<h4>選擇成品尺寸</h4>
+				<table>
+				  <tr>
+				    <td width="25%">&nbsp;</td>
+				    <td width="50%">
+				    <table width="100%" cellpadding="0" cellspacing="0" border="1"
+					style="max-width: 900px;">
+					<tr height="30px">
+						<td style="text-align: right"><strong>圖畫高</strong>：</td>
+						<td><select onChange="setCenterHeight(this.value)" id="heightOptions">
+								<option value="35">35</option>
+								<option value="36">36</option>
+								<option value="37">37</option>
+								<option value="38">38</option>
+								<option value="39">39</option>
+								<option value="40">40</option>
+								<option value="41">41</option>
+								<option value="42">42</option>
+								<option value="43">43</option>
+								<option value="44">44</option>
+								<option value="45">45</option>
+								<option value="46">46</option>
+								<option value="47">47</option>
+								<option value="48">48</option>
+								<option value="49">49</option>
+								<option value="50">50</option>
+								<option value="51">51</option>
+								<option value="52">52</option>
+								<option value="53">53</option>
+								<option value="54">54</option>
+								<option value="55">55</option>
+								<option value="56">56</option>
+								<option value="57">57</option>
+								<option value="58">58</option>
+								<option value="59">59</option>
+								<option value="60" selected="selected">60</option>
+								<option value="61">61</option>
+								<option value="62">62</option>
+								<option value="63">63</option>
+								<option value="64">64</option>
+								<option value="65">65</option>
+								<option value="66">66</option>
+								<option value="67">67</option>
+								<option value="68">68</option>
+								<option value="69">69</option>
+								<option value="70">70</option>
+						</select>公分</td>
+					</tr>
+					<tr height="30px">
+						<td style="text-align: right"><strong>加白邊：</strong></td>
+						<td><select name=blank width=60px onChange="setBlank(this.value)">
+								<option value="0">0</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5" selected="selected">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+
+						</select>公分</td>
+					</tr>
+				</table></td>
+				    <td width="25%">&nbsp;</td>
+				  </tr>
+</table>
+				
+			</center>
+		</div>
+		<div class="col-lg-4" id="showFrame">
+			<center>
+			  <h4>模擬成品</h4>
+				<br>
+				<table id="framing" border="0" cellpadding="0" cellspacing="0"
+					style="width: 90%; max-width: 600px;">
+					<tr id="r1">
+						<td id="1-1" style="line-height:1px; background:url('images/frames/GS63/GS63-1.jpg') repeat-x; background-size:auto 100%;"><div id="h1" style="font-size:2px; vertical-align:middle;">&nbsp;</div></td>
+						<td id="1-2" style="line-height:1px; background:url('images/frames/GS63/GS63-2.jpg') repeat-x; background-size:auto 100%;"></td>
+						<td id="1-3" style="line-height:1px; background:url('images/frames/GS63/GS63-2.jpg') repeat-x; background-size:auto 100%;"></td>
+						<td id="1-4" style="line-height:1px; background:url('images/frames/GS63/GS63-2.jpg') repeat-x; background-size:auto 100%;"></td>
+						<td id="1-5" style="line-height:1px; background:url('images/frames/GS63/GS63-3.jpg') repeat-x; background-size:auto 100%;"> </td>
+					</tr>
+					<tr id="r2">
+						<td id="2-1" style="line-height:1px; background:url('images/frames/GS63/GS63-4.jpg') repeat-y; background-size:100%;"><div style="font-size:2px; vertical-align:middle;">&nbsp;</div></td>
+					    <td id="2-2" style="background:#FCFCFC;"><div id="h2" style="font-size:2px; vertical-align:middle;">&nbsp;</div></td>
+					    <td id="2-3" style="background:#FCFCFC;"> </td>
+					    <td id="2-4" style="background:#FCFCFC;"> </td>
+						<td id="2-5" style="line-height:1px; background:url('images/frames/GS63/GS63-6.jpg') repeat-y; background-size:100%;"><div style="font-size:2px; vertical-align:middle;">&nbsp;</div></td>
+					</tr>
+					<tr id="r3">
+						<td id="3-1" style="line-height:1px; background:url('images/frames/GS63/GS63-4.jpg') repeat-y; background-size:100%;"></td>
+					    <td id="3-2" style="background:#FCFCFC;"> </td>
+						<td id="3-3">
+								<div class="wrapper"><img id="centerPainting" src="images/upload.jpg" width="100%">
+									<div class="description">
+									<center>
+										<p class="description_content" id="uploadInstruction">點選(碰觸)中央上傳畫作</p>
+										</center>
+									</div> 
+				    			</div>
+						</td>
+					    <td id="3-4" style="background:#FCFCFC;"><img src="images/blank.png"></td>
+						<td id="3-5" style="line-height:1px; background:url('images/frames/GS63/GS63-6.jpg') repeat-y; background-size:100%;"></td>
+					</tr>
+					<tr id="r4">
+						<td id="4-1" style="line-height:1px; background:url('images/frames/GS63/GS63-4.jpg') repeat-y; background-size:100%;"><div style="font-size:2px;vertical-align:middle;">&nbsp;</div></td>
+					    <td id="4-2" style="background:#FCFCFC;"><div id="h4" style="font-size:2px; vertical-align:middle;">&nbsp;</div></td>
+					    <td id="4-3" style="background:#FCFCFC;"> </td>
+					    <td id="4-4" style="background:#FCFCFC;"> </td>
+						<td id="4-5" style="line-height:1px; background:url('images/frames/GS63/GS63-6.jpg') repeat-y; background-size:100%;"><div style="font-size:2px; vertical-align:middle;">&nbsp;</div></td>
+					</tr>
+					<tr id="r5">
+						<td id="5-1" style="line-height:1px; background:url('images/frames/GS63/GS63-7.jpg') repeat-x; background-size:auto 100%;"><div id="h5" style="font-size:2px; vertical-align:middle;">&nbsp;</div>
+						</td>
+						<td id="5-2" style="line-height:1px; background:url('images/frames/GS63/GS63-8.jpg') repeat-x; background-size:auto 100%;"></td>
+						<td id="5-3" style="line-height:1px; background:url('images/frames/GS63/GS63-8.jpg') repeat-x; background-size:auto 100%;"></td>
+						<td id="5-4" style="line-height:1px; background:url('images/frames/GS63/GS63-8.jpg') repeat-x; background-size:auto 100%;"></td>
+						<td id="5-5" style="line-height:1px; background:url('images/frames/GS63/GS63-9.jpg') repeat-x; background-size:auto 100%;"><div style="font-size:2px; vertical-align:middle;">&nbsp;</div></td>
+					</tr>
+				</table>
+			</center>
+		</div>
+		<div class="col-lg-4">
+		  <div id="orderInfo">
+		<center>
+		 <font size=4 color=red>
+		 <table cellpadding="0" cellspacing="0" border="1"
+					style="width: 100%; max-width: 900px;">
+		 	<tr height="30px">
+		 		<td width="40%" style="text-align: right"><strong>圖畫高</strong>：</td><td><font color=red><span id=dispPH>60</span></font>公分</td>
+		 	</tr>
+		 	<tr height="30px">
+		 		<td style="text-align: right"><strong>圖畫寬</strong>：</td><td><font color=red><span id=dispPW>??</span></font>公分(約略值)</td>
+		 	</tr>
+		 	<tr height="30px">
+		 		<td style="text-align: right"><strong>加白邊：</strong></td><td><font color=red><span id=dispBLK>5</span></font>公分</td>
+		 	</tr>
+		 	<tr height="30px">
+		 		<td style="text-align: right"><strong>框條</strong>：</td><td><font color=red><span id=dispFC>BS63</span></font></td>
+		 	</tr>
+		 	<tr height="30px">
+		 		<td style="text-align: right"><strong>框條面寬</strong>：</td><td><font color=red><span id=dispFW></span></font>公分</td>
+		 	</tr>
+		 	<tr height="30px">
+		 		<td style="text-align: right"><strong>成品尺寸</strong>：</td><td><font color=red>約 <span id=dispDim></span> 公分</font></td>
+		 	</tr>
+		 </table>
+			</font>
+			<font size=7 color=red><div id="amount">$9,999</div></font>
+		</center>
+		</div>
+		<center>
+		<br><img src="images/cart.png" onClick="addToCart();"/>
+		</center>
+	  </div>
+	</div>
+	<div><br>
+	<center>
+	  <div role="tabpanel">
+	    <ul class="nav nav-tabs" role="tablist">
+	      <li role="presentation" class="active"><a href="#frameTab" data-toggle="tab" role="tab" aria-controls="tab1">邊框</a></li>
+	      <li role="presentation" class="dropdown"><a href="#" id="tabDropOne1" class="dropdown-toggle" data-toggle="dropdown" role="tab" aria-controls="tab3" aria-haspopup="true" aria-expanded="false">複製畫<span class="caret"></span></a>
+	        <ul id="artists" class="dropdown-menu" aria-labelledby="showPaintings">
+            </ul>
+          </li>
+          <!--
+	      <li role="presentation" class="dropdown"><a href="#" id="tabDropOne2" class="dropdown-toggle" data-toggle="dropdown" role="tab" aria-controls="tab3" aria-haspopup="true" aria-expanded="false">當代畫家原作<span class="caret"></span></a>
+	        <ul id="originalDrawing" class="dropdown-menu" aria-labelledby="tabDropOne2">
+            </ul>
+          </li>
+           -->
+        </ul>
+	    <div id="tabContent1" class="tab-content">
+	      <div role="tabpanel" class="tab-pane fade in active" id="frameTab">
+	      <div class="container"  id="frameList"></div>
+	      <!--
+			   	<input type="image" height="120" src="images/frame-BF19.jpg" onClick="changeFrame(this.src)">&nbsp;
+				<input type="image" height="120" src="images/frame-CF19.jpg" onClick="changeFrame(this.src)">&nbsp;
+				<input type="image" height="120" src="images/frame-GS27.jpg" onClick="changeFrame(this.src)">&nbsp;
+-->
+          </div>
+	      <div role="tabpanel" class="tab-pane fade" id="showPaintings" tabindex="-1" data-toggle="tab">
+             <div class="container" id="artistsCollection" style="font-size: 100%">
+             <hr/>
+              <div class="row" id="paintings"></div>
+			  </div>
+          </div>
+          
+      <!--
+	      <div role="tabpanel" class="tab-pane fade" id="tabDropDownOne1">
+	        <p>Dropdown content#1</p>
+          </div>
+	      <div role="tabpanel" class="tab-pane fade" id="tabDropDownTwo1">
+	        <p>Dropdown content#2 </p>
+          </div>
+       -->
+        </div>
+      </div>
+<script>
+	RegExp.escape= function(s) {
+		return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+	};
+	var isPrintPainting=false;
+	var cartItems=0;
+	var thisFrame={paintingHeight:60,paintingWidth:60,blank:5,frameWidth:6.3,frameName:'GS63',paintingWPX:600,paintingHPX:600,price:10};
+	var active=true;
+	var centerPainting;
+	function checkOut(){
+		if(cartItems==0)
+			return;
+		alert('checkout');
+	}
+	function addToCart(){
+		var items=document.getElementById('cartItems');
+		var items2=document.getElementById('cartItems2');
+		items.innerHTML=++cartItems;
+		items2.innerHTML=cartItems;
+		orderScreenShot();
+		var elm=document.getElementById('centerPainting');
+		var src=elm.getAttribute('src');
+		
+		var frameName=src.split(/\//)[6];//src.substr(src.lastIndexOf('-')+1,4);
+		var thisOrder={'複製畫':isPrintPainting,'framingInfo':thisFrame}
+	}
+	function orderScreenShot(){
+		var node1=document.getElementById('framing');
+		var node2=document.getElementById('orderInfo');
+		var screenShot=document.getElementById('screenShot');
+		var savedStyle=$("#uploadInstruction")[0].getAttribute('style');
+		$("#uploadInstruction")[0].setAttribute('style','display:none;');
+		while(screenShot.firstChild)
+			screenShot.removeChild(screenShot.firstChild);
+		domtoimage.toPng(node1).then(function (dataUrl) {
+			$("#uploadInstruction")[0].setAttribute('style',savedStyle);
+        	var img = new Image();
+			img.style="width:45%";
+        	img.src = dataUrl;
+        	screenShot.appendChild(img)
+			domtoimage.toPng(node2).then(function (dataUrl) {
+				$("#uploadInstruction")[0].setAttribute('style',savedStyle);
+        		var img = new Image();
+        		img.src = dataUrl;
+				img.style="width:45%";
+        		screenShot.appendChild(img)
+    	})
+    	.catch(function (error) {
+        	console.error('oops, something went wrong!', error);
+    	});
+    	})
+    	.catch(function (error) {
+        	console.error('oops, something went wrong!', error);
+    	});
+	}
+	function changeArtist(artist){
+		//var photo='<img src="images/copyPainting/'+artist+'/簡介1.jpg" onerror="this.src=\'images/簡介1.jpg\'">';
+		//var resume='<img src="images/copyPainting/'+artist+'/簡介2.jpg" onerror="this.src=\'images/簡介2.jpg\'">';
+		//console.log('changeArtist:',photo,resume,$("#artistPhoto")[0].innerHTML);
+		//$("#artistPhoto")[0].innerHTML=photo;
+		//$("#artistResume")[0].innerHTML=resume;
+		$.ajax({
+			url:'ws/getArtistPaintings.php?cate=printPainting&artist='+artist,
+			dataType:'json',
+			success:function(data){
+				console.log('data:',data);
+				//$("#artistHeader")[0].innerHTML=data.about;
+				$("#paintings")[0].innerHTML=data.list;
+			}
+		})
+		console.log('change artist:',artist,$("#artistResume"));
+	}
+
+	function changePainting(src){
+		console.log('change painting:',src.split(/\//));
+		var elm=document.getElementById('centerPainting');
+		elm.setAttribute('src',src);
+		doFraming();
+	}
+	function changeFrame(src){
+		console.log('change frame:',src.split(/\//));
+		var table=document.getElementById('framing');
+		var newFrameName=src.split(/\//)[6];//src.substr(src.lastIndexOf('-')+1,4);
+		var oldFrameName=thisFrame.frameName
+		console.log('change frame to:',newFrameName);
+		$.ajax({
+			url:'images/frames/'+newFrameName+'/meta.txt',
+			dataType: 'json',
+			success: function (data) {
+				thisFrame.frameWidth=data.框條面寬;
+				thisFrame.price=data.單價;
+				doFraming();
+				//console.log('ajax:',data.框條面寬);
+			},
+			error(error){
+				console.log('ajax err:',error);
+			}
+		});
+		thisFrame.frameName=newFrameName;
+		for(i=0;i<5;i++){
+			for(j=0;j<5;j++){
+				if(table.rows[i].cells[j].getAttribute('style')!=null && table.rows[i].cells[j].getAttribute('style').indexOf(oldFrameName)>0){
+				    console.log(i+'-'+j,table.rows[i].cells[j].getAttribute('style'),table.rows[i].cells[j].getAttribute('style').replace(new RegExp(oldFrameName,'g'),newFrameName));
+					table.rows[i].cells[j].setAttribute('style',table.rows[i].cells[j].getAttribute('style').replace(new RegExp(RegExp.escape(oldFrameName),'g'),newFrameName));
+				}
+			}
+		}
+		//doFraming();
+		//console.log('changeFrame:',newFrameName);
+		//src.substr(src.lastIndexOf('-'));
+	}
+	function setup(){
+		centerPainting=document.getElementById('centerPainting');
+		var heightOptions=document.getElementById('heightOptions');
+		
+		if(localStorage.getItem('chosen')!=null &&localStorage.getItem('chosen').length>0){
+			console.log('chosen',localStorage.getItem('chosen'),heightOptions);
+			centerPainting.setAttribute('src',localStorage.getItem('chosen'));	
+			localStorage.setItem('chosen','');
+			$("#uploadInstruction")[0].setAttribute('style','display:none;');
+			isPrintPainting=true;
+		}else{
+			for(i=71;i<=150;i++){
+				var opt=document.createElement('option');
+				opt.value=i;
+				opt.innerHTML=i;
+				heightOptions.appendChild(opt);
+			}
+		}
+			
+		centerPainting.onload=function(){
+			console.log('centerPainting:'+centerPainting.naturalWidth+'x'+centerPainting.naturalHeight)
+            thisFrame.paintingWPX=centerPainting.naturalWidth;
+            thisFrame.paintingHPX=centerPainting.naturalHeight;
+			thisFrame.paintingWidth=thisFrame.paintingHeight*centerPainting.naturalWidth/centerPainting.naturalHeight;
+			console.log('thisFrame:'+thisFrame.paintingWPX+'x'+thisFrame.paintingHPX);
+			doFraming();
+		}
+		$.ajax({
+			url:'ws/getArtists.php?cat=printPainting',
+			dataType: 'json',
+			success: function (data) {
+				console.log('ajax:',data);
+				var p=0;
+				$.each(data, function(index, element) {
+					console.log(index,element);
+					if(p==0){
+						//changeArtist(element);
+					}
+					var html='<li style="font-size: 140%;"><a href="#showPaintings" onclick="changeArtist(\''+element+'\')"  tabindex="-1" data-toggle="tab">'+element+'</a></li>';
+					$("#artists").append(html);
+					p++;
+				});
+			}
+		});	
+		$.ajax({
+			url:'ws/getFrames.php',
+			dataType: 'json',
+			success: function (data) {
+				console.log('ajax:',data);
+				var p=0;
+				var html='';
+				$.each(data, function(index, element) {
+					console.log(index,element);
+					if(p%3==0){
+						html+='<div class="row">';
+					}
+					html+='<div class="col-lg-4" style="font-size: 140%; margin-top:35px;"><image src="images/frames/'+element+'/說明1.jpg" width="95%" onClick="changeFrame(this.src)"><br>'+element+'</div>';
+					p++;
+					if(p%3==0){
+						html+='</div>';
+					}
+				});
+				$("#frameList")[0].innerHTML=html;
+			}
+		});	
+		/*
+		$.ajax({
+			url:'copyDrawing.txt',
+			dataType: 'json',
+			success: function (data) {
+				console.log('ajax:',data);
+				$.each(data, function(index, element) {
+					console.log(index,element);
+					var html='<li><a href="#tabCD'+index+'" tabindex="-1" data-toggle="tab">'+element+'</a></li>'
+					$("#copyDrawing").append(html)
+					html='<div role="tabpanel" class="tab-pane fade" id="tabCD'+index+'"><p>'+element+'的內容</p></div>';
+					$.ajax({
+						url:'ws/drawingList.php?cate=copyDrawings&artist='+element,
+						dataType:'html',
+						success:function(data){
+							$("#tabCD"+index).html(data);
+						}})
+					$("#tabContent1").append(html);
+					active=false;
+				});
+			},
+			error(error){
+				console.log('ajax err:',error);
+			}
+		});
+		*/
+		/*
+		$.ajax({
+			url:'contemporaryArtists.txt',
+			dataType: 'json',
+			success: function (data) {
+				console.log('ajax:',data);
+				$.each(data, function(index, element) {
+					console.log(index,element);
+					var html='<li><a href="#tabOD'+index+'" tabindex="-1" data-toggle="tab">'+element+'</a></li>'
+					$("#originalDrawing").append(html)
+					html='<div role="tabpanel" class="tab-pane fade" id="tabOD'+index+'"><p>'+element+'的內容</p></div>';
+					$("#tabContent1").append(html);
+					active=false;
+				});
+			}});
+			*/
+	    //$("#copyDrawing").load('copyDrawing.txt');
+		doFraming();
+	}
+	function setCenterHeight(height){
+		var h=parseInt(height);
+		thisFrame.paintingHeight=h;
+		thisFrame.paintingWidth=h*thisFrame.paintingWPX/thisFrame.paintingHPX;
+		console.log('thisFrame',thisFrame);
+		doFraming();
+		doDisp();
+	}
+	function setBlank(blank){
+		var elm=document.getElementById('dispBLK');
+		elm.innerHTML=blank;
+		var table=document.getElementById('framing');
+		if(blank==0){
+			//table.deleteRow(3);
+			//table.deleteRow(1);
+			table.rows[0].cells[1].setAttribute('style','display:none;');
+			table.rows[0].cells[3].setAttribute('style','display:none;');
+			table.rows[1].setAttribute('style','display:none;');
+			//table.rows[1].cells[1].setAttribute('style','display:none;');
+			table.rows[2].cells[1].setAttribute('style','display:none;'+table.rows[2].cells[1].getAttribute('style'));
+			table.rows[2].cells[3].setAttribute('style','display:none;'+table.rows[2].cells[3].getAttribute('style'));
+			table.rows[2].cells[3].setAttribute('style','display:none;');
+			table.rows[3].setAttribute('style','display:none;');
+			table.rows[4].cells[1].setAttribute('style','display:none;');
+			table.rows[4].cells[3].setAttribute('style','display:none;');
+			
+			//table.rows[0].deleteCell(3);
+			//table.rows[0].deleteCell(1);
+			//table.rows[1].deleteCell(3);
+			//table.rows[1].deleteCell(1);
+			//table.rows[2].deleteCell(3);
+			//table.rows[2].deleteCell(1);
+		}else{
+			table.rows[1].removeAttribute('style');
+			table.rows[3].removeAttribute('style');
+			if(true||thisFrame.blank=='0'){//restore the blank frame
+				//var r2=table.insertRow(1);
+				//var r4=table.insertRow(3);
+				//table.rows[0].insertCell(1).id='1-2';
+				//table.rows[0].insertCell(3).id='1-4';
+				//table.rows[2].insertCell(1).id='3-2';
+				//table.rows[2].insertCell(3).id='3-4';
+				//table.rows[4].insertCell(1).id='5-2';
+				//table.rows[4].insertCell(3).id='5-4';
+				for(i=0;i<5;i++){
+					//var c2=r2.insertCell(-1);
+					//var c4=r4.insertCell(-1);
+				}
+				table.rows[0].cells[1].setAttribute("style","line-height:1px; background:url('images/frames/"+thisFrame.frameName+"/"+thisFrame.frameName+"-2.jpg') repeat-x; background-size:auto 100%;");
+				table.rows[0].cells[3].setAttribute("style","line-height:1px; background:url('images/frames/"+thisFrame.frameName+"/"+thisFrame.frameName+"-2.jpg') repeat-x; background-size:auto 100%;");
+				table.rows[4].cells[1].setAttribute("style","line-height:1px; background:url('images/frames/"+thisFrame.frameName+"/"+thisFrame.frameName+"-8.jpg') repeat-x; background-size:auto 100%;");
+				table.rows[4].cells[3].setAttribute("style","line-height:1px; background:url('images/frames/"+thisFrame.frameName+"/"+thisFrame.frameName+"-8.jpg') repeat-x; background-size:auto 100%;");
+				//r2.id='r2';
+				//r4.id='r4';
+				//r2.cells[0].id='2-1';
+				table.rows[1].cells[0].setAttribute("style","line-height:1px; background:url('images/frames/"+thisFrame.frameName+"/"+thisFrame.frameName+"-4.jpg') repeat-y; background-size:100%;");
+				table.rows[1].cells[4].setAttribute("style","line-height:1px; background:url('images/frames/"+thisFrame.frameName+"/"+thisFrame.frameName+"-6.jpg') repeat-y; background-size:100%;");
+				table.rows[2].cells[1].setAttribute('style',table.rows[2].cells[1].getAttribute('style').substr(table.rows[2].cells[1].getAttribute('style').indexOf(';')));
+				table.rows[2].cells[3].setAttribute('style',table.rows[2].cells[3].getAttribute('style').substr(table.rows[2].cells[3].getAttribute('style').indexOf(';')));
+				table.rows[3].cells[0].setAttribute("style","line-height:1px; background:url('images/frames/"+thisFrame.frameName+"/"+thisFrame.frameName+"-4.jpg') repeat-y; background-size:100%;");
+				table.rows[3].cells[4].setAttribute("style","line-height:1px; background:url('images/frames/"+thisFrame.frameName+"/"+thisFrame.frameName+"-6.jpg') repeat-y; background-size:100%;");
+				//r2.cells[0].style='line-height:1px; background:url(\'images/'+thisFrame.frameName+'/'+thisFrame.frameName+'-4.jpg\') repeat-y; background-size:auto  100%;';
+				table.rows[1].cells[1].innerHTML='<div id="h2" style="font-size:2px; height:12px; vertical-align:middle;">&nbsp;</div>';
+				//r2.cells[3].style="line-height:1px; background:url('images/"+thisFrame.frameName+'/'+thisFrame.frameName+"-6.jpg') repeat-y; background-size:auto  100%;";
+				//r4.cells[0].style="line-height:1px; background:url('images/"+thisFrame.frameName+'/'+thisFrame.frameName+"-4.jpg') repeat-y; background-size:auto 100%;";
+				table.rows[3].cells[1].innerHTML='<div id="h4" style="font-size:2px; height:12px; vertical-align:middle;">&nbsp;</div>';
+				//r4.cells[3].style="line-height:1px; background:url('images/"+thisFrame.frameName+'/'+thisFrame.frameName+"-6.jpg') repeat-y; background-size:auto 100%;";
+				//r4.cells[0].id='4-1';
+				console.log('table reconstructed',table);
+			}
+		}
+		thisFrame.blank=blank;
+		console.log('setBlank',blank,thisFrame);
+		doFraming();
+		console.log('thisFrame',thisFrame);
+	}
+	function doDisp(){
+		var dim=document.getElementById('dispDim');
+		var ph=document.getElementById('dispPH');
+		var pw=document.getElementById('dispPW');
+		var fw=document.getElementById('dispFW');
+		var fc=document.getElementById('dispFC');
+		var blank=document.getElementById('dispBLK');
+		var amount=document.getElementById('amount');
+		dim.innerHTML=Math.round(((thisFrame.frameWidth+thisFrame.blank)*2+thisFrame.paintingWidth)*10)/10 + ' X '+ Math.round(((thisFrame.frameWidth+thisFrame.blank)*2+thisFrame.paintingHeight)*10)/10;
+		ph.innerHTML=thisFrame.paintingHeight;
+		pw.innerHTML=Math.round(thisFrame.paintingHeight*thisFrame.paintingWPX/thisFrame.paintingHPX*10)/10;
+		fw.innerHTML=thisFrame.frameWidth;
+		var amnt=Math.round((thisFrame.frameWidth+thisFrame.blank)*2+thisFrame.paintingWidth)+Math.round((thisFrame.frameWidth+thisFrame.blank)*2+thisFrame.paintingHeight);
+		console.log('amnt=',amnt);
+		amnt*=thisFrame.price;
+		amnt=Math.floor(amnt/100)*100;
+		amount.innerHTML='$'+amnt.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+		blank.innerHTML=thisFrame.blank;
+		fc.innerHTML=thisFrame.frameName;
+		console.log('dispPH=',thisFrame.frameWidth,thisFrame.blank,thisFrame.paintingHeight);
+	};
+	function doFraming(){
+		var frmming=document.getElementById('framing');
+		console.log('framing.clientWidth:',framing.clientWidth);
+		var h1=document.getElementById('h1');
+		var totalWidth=(thisFrame.frameWidth+thisFrame.blank)*2+thisFrame.paintingWidth;
+		h1.style='height:'+(framing.clientWidth*thisFrame.frameWidth/totalWidth)+'px; vertical-align:middle;';
+		console.log('h1:',(framing.clientWidth*thisFrame.frameWidth/totalWidth))
+		var h2=document.getElementById('h2');
+		var h4=document.getElementById('h4');
+		if(h2!=null){
+			h2.style='font-size:2px; height:'+(framing.clientWidth*thisFrame.blank/totalWidth)+'px; vertical-align:middle;';
+			h4.style='font-size:2px; height:'+(framing.clientWidth*thisFrame.blank/totalWidth)+'px; vertical-align:middle;';
+		}
+		var h5=document.getElementById('h5');
+		h5.style='font-size:2px; height:'+(framing.clientWidth*thisFrame.frameWidth/totalWidth)+'px; vertical-align:middle;';
+		var f11=document.getElementById('1-1');
+		f11.width=(framing.clientWidth*thisFrame.frameWidth/totalWidth)+'px';//(thisFrame.frameWidth/totalWidth*100)+'%';
+		var f12=document.getElementById('1-2');
+		if(f12!=null)
+			f12.width=(thisFrame.blank/(totalWidth)*100)+'%';
+		var f14=document.getElementById('1-4');
+		if(f14!=null)
+			f14.width=(thisFrame.blank/(totalWidth)*100)+'%';
+		var f15=document.getElementById('1-5');
+		f15.width=(thisFrame.frameWidth/(totalWidth)*100)+'%';
+		doDisp();
+	};
+	
+</script>	
+	</center>
+		
+	</div>
+<div class="container" id="screenShot"></div>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="js/jquery-1.11.3.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.js"></script>
+	<script src="js/bootstrap.fd.js"></script>
+	<script src="js/dom-to-image.min.js"></script>
+<script>
+		$("#centerPainting").click(function() {
+			    if(isPrintPainting)
+					return;
+		        $.FileDialog({title:"上傳JPG檔",ok_button:"開始上傳",cancel_button:"取消",multiple:false,accept:"image/jpeg",drag_message:"拖曳檔案到這裡"}).on('files.bs.filedialog', function(ev) {
+                var elm=document.getElementById('centerPainting');
+                var files = ev.files;
+                var text = "";
+                files.forEach(function(f) {
+                    //text += f.name + "<br>";
+                    console.log('file:',f);
+                    elm.setAttribute("src",f.content);
+                    
+                });
+                thisFrame.paintingWidth=thisFrame.paintingHeight*elm.naturalWidth/elm.naturalHeight;
+                console.log('file:',elm);
+                $("#output").html(text);
+            }).on('cancel.bs.filedialog', function(ev) {
+                $("#output").html("Cancelled!");
+            });
+			console.log('centerPainting clicked');
+		});
+	</script>
+	<div class="affix" style="right:5px;top:180px;"><a href="#" onClick="checkOut();"><img src="images/cartItems.png" width="60"/><span class="badge badge-error" id="cartItems2" style="font-size: 90%;position: relative;  top: -7px; left:-38px;background-color: red;">0</span><span class="label label-default" style="font-size: 110%;position: relative;  top: 7px; left:-28px;">結帳</span></a></div>
+</body>
+</html>

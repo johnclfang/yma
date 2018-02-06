@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/examples/vendor/aframe/build/aframe.min.js"></script>
+<script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.5.0/aframe/build/aframe-ar.js"></script>
+<body style="margin : 10px;  overflow: hidden;">
+	<a-assets>
+  		<img id="texture" src="images/標題 年份 號數 定價.png">
+	</a-assets>
+	<a-scene embedded artoolkit="sourceType: webcam;">
+	 <!-- <a-box color="tomato" depth="0.3" height="1.0" width="1.0"></a-box>-->
+  	 <!-- <a-box src="#texture"></a-box>	-->
+  	    <a-plane src="#texture" height="3" width="3" rotation=" 0 0 0"></a-plane>
+   	    <a-marker-camera preset="hiro"></a-marker-camera>
+	</a-scene>
+</body>

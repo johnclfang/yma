@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>揚美畫框-畫廊</title>
+    <!-- Bootstrap -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+<style>
+.row [class*="col-"]{
+  margin-bottom: -99999px;
+  padding-bottom: 99999px;
+}
+
+.row{
+  overflow: hidden; 
+}
+.vbottom {
+   display: inline-block;
+   vertical-align: bottom;
+   float: none;
+}
+</style>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+  </head>
+<body onload="setup();">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      <a class="navbar-brand" href="index.html" ><img style="margin-bottom: 30px;" src="images/揚美畫框72.jpg" height="30" alt="" /></a></div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="defaultNavbar1">
+        <ul class="nav navbar-nav" style="font-size: 160%">
+          <li class="active"><a href="index.html">首頁<span class="sr-only">(current)</span></a></li>
+		  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">複製畫<span class="caret"></span></a>
+            <ul class="dropdown-menu" id="artists">
+            </ul>
+          </li>          
+          <li><a href="gallery.html">畫廊</a></li>
+          <li><a href="fo2.html">畫框</a></li>
+          
+        </ul>
+        <form class="navbar-form navbar-left" role="search" style="display:none;">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right"  style="font-size: 160%;">
+          <li><a href="#">購物清單</a></li>
+          <li><a href="#contactUs">聯絡我們</a></li>
+          <li class="dropdown"  style="display:none;"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+  <div id="carousel1" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators" id="c-indicator">
+    </ol>
+    <div class="carousel-inner" role="listbox" id="carousel">
+    </div>
+    <a class="left carousel-control" href="#carousel1" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#carousel1" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span></a></div>
+  <hr/>
+<div class="container" id="artistsCollection" style="font-size: 160%">
+  <div class="row" id="artistHeader">
+	  <div class="col-lg-6" id="artistPhoto"></div><br>
+	  <div class="col-lg-6" id="artistResume"></div>
+  </div>
+  <div class="row" id="paintings"></div>
+</div>
+<hr/>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+	<script src="js/jquery-1.11.3.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed --> 
+	<script src="js/bootstrap.js"></script>
+	<script>
+		function changeArtist(artist){
+			var photo='<img src="images/copyPainting/'+artist+'/簡介1.jpg" onerror="this.src=\'images/簡介1.jpg\'">';
+			var resume='<img src="images/copyPainting/'+artist+'/簡介2.jpg" onerror="this.src=\'images/簡介2.jpg\'">';
+			//console.log('changeArtist:',photo,resume,$("#artistPhoto")[0].innerHTML);
+			//$("#artistPhoto")[0].innerHTML=photo;
+			//$("#artistResume")[0].innerHTML=resume;
+			$.ajax({
+				url:'ws/getArtistPaintings.php?cate=copyPainting&artist='+artist,
+				dataType:'json',
+				success:function(data){
+					console.log('data:',data);
+					$("#artistHeader")[0].innerHTML=data.about;
+					$("#paintings")[0].innerHTML=data.list;
+				}
+			})
+			console.log('change artist:',artist,$("#artistResume"));
+		}
+		function setup(){
+			$.ajax({
+				url:'ws/getArtists.php?cat=copyPainting',
+				dataType: 'json',
+				success: function (data) {
+					console.log('ajax:',data);
+					var p=0;
+					$.each(data, function(index, element) {
+						console.log(index,element);
+						var html='<li style="font-size: 140%;"><a href="javascript: return false;" onclick="changeArtist(\''+element+'\')">'+element+'</a></li>';
+						$("#artists").append(html);
+						var ind='<li data-target="#carousel1" data-slide-to="'+p+'" '+(p==0?'class="active"':'')+'></li>';
+						$("#c-indicator").append(ind);
+						var cont='<div class="item '+p+' '+(p==0?'active':'')+'"><img src="images/gallery/'+element+'/簡介.jpg" alt="'+element+'簡介" class="center-block"  onerror="this.src=\'images/簡介.jpg\'" onclick="changeArtist(\''+element+'\')"> </div>';
+						$("#carousel").append(cont);
+						p++;
+					});
+				}
+			});		//crs=document.getElementById('carousel');
+		}
+	</script>
+</body>
+</html>

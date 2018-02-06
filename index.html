@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>揚美畫框</title>
+    <!-- Bootstrap -->
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/login.css" rel="stylesheet">
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+  </head>
+  <body onload="setup();">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      <a class="navbar-brand" href="index.html" ><img style="margin-bottom: 30px;" src="images/揚美畫框72.jpg" height="30" alt="" /></a></div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="defaultNavbar1">
+        <ul class="nav navbar-nav" style="font-size: 160%">
+          <li class="active"><a href="#">首頁<span class="sr-only">(current)</span></a></li>
+          <li><a href="#aboutUs">關於畫廊</a></li>
+          <li><a href="gallery.html">畫廊</a></li>
+          <li><a href="printPainting.html">複製畫</a></li>
+          <li><a href="frame.html">畫框</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search" style="display:none;">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right"  style="font-size: 160%">
+          <li><a href="#">購物清單</a></li>
+          <li><a href="#contactUs">聯絡我們</a></li>
+          <li id="login"><a href="#" data-toggle="modal" data-target="#login-modal" onClick="$('#login')[0].style='display:none'">登入</a></li>
+          <li id="logout" style="display:none"><a href="#"  onClick="$('#logout')[0].style='display:none'">登出</a></li>
+          <li class="dropdown"  style="display:none;"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+  <div id="carousel1" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators" id="c-indicator">
+    </ol>
+    <div class="carousel-inner" role="listbox" id="carousel">
+    </div>
+    <a class="left carousel-control" href="#carousel1" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="right carousel-control" href="#carousel1" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span></a></div>
+  <hr/>
+  <div class="container">
+  	<center>
+	  <a href="gallery.html"><img src="images/buttonG.png" width="89" height="40" alt=""/></a>
+	  <a href="printPainting.html"><img src="images/buttonC.png" width="89" height="40" alt=""/></a>
+	  <a href="frame.html"><img src="images/buttonF.png" width="89" height="40" alt=""/></a>
+	</center>
+  </div>
+  <hr/>
+  <section id="aboutUs">
+  <P style="margin-left:50px; margin-right: 50px; font-size:200%;">  128畫廊已多年經營經驗，代理現階段畫家其資歷相當齊全。含蓋國內老、中、輕都是很有淺力且具升值空間的當代台灣名家。其內容登錄畫家生平介紹及創作理念是台灣當代藝術界頗具知名度的藝術家。每幅作品都有詳細註解，值得收藏
+的藝術品...
+</P>
+ </section>
+  <hr/>
+   <section id="contactUs">
+     <div class="row">
+        <div class="col-lg-4">
+        <p style="margin-left:50px; margin-right: 50px; font-size:150%;">
+        	畫   廊：<br/>
+        	台中市西區台灣大道2段166號/04-22082118
+        </p>
+        </div>
+        <div class="col-lg-4">
+			<p style="margin-left:50px; margin-right: 50px; font-size:150%;">
+			畫框工廠：<br>	
+			台中市太原路3段1368-1號/04-22399600
+			</p>        	
+        </div>
+        <div class="col-lg-4">
+        	<p style="margin-left:50px; margin-right: 50px; font-size:150%;">
+        	專人服務：<br>
+        	方鎮洋/0930-882256
+        	</p>
+        </div>
+     </div>
+  </section>
+  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    	  <div class="modal-dialog">
+				<div class="loginmodal-container">
+					<h1>登入</h1><br>
+				  <form>
+					<input type="text" name="user" placeholder="您已註冊過的帳號">
+					<input type="password" name="pass" placeholder="密碼">
+					<input type="submit" name="login" class="login loginmodal-submit" value="登入" onSubmit="$('#login')[0].style='display:none';$('#logout')[0].style='';">
+				  </form>
+					
+				  <div class="login-help">
+					<a href="#">註冊/Register</a> - <a href="#">忘記密碼/Forgot Password</a>
+				  </div>
+				</div>
+			</div>
+		  </div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+	<script src="js/jquery-1.11.3.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed --> 
+	<script src="js/bootstrap.js"></script>
+	<script>
+		function setup(){
+			var loc = window.location;
+			console.log('location:', loc);
+			var prot = window.location.protocol;
+			if (window.location.protocol != "https:") {
+				window.location.protocol = "https:";
+			}
+
+			$.ajax({
+				url:'ws/loadCarousel.php',
+				dataType:'json',
+				success:function(data){
+					console.log('got carousel:',data);
+					$("#c-indicator").append(data.ind);
+					$("#carousel").append(data.cont);
+					}})
+			console.log("setup");
+		}
+		//crs=document.getElementById('carousel');
+	</script>
+  </body>
+</html>
